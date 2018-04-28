@@ -90,6 +90,7 @@ module ActiveShipping
         it "should create array of packages" do
           packages = international_calculator.send :packages, package
           expect(packages.size).to eq(5)
+          packages.map{|package| puts package.weight}
           expect(packages.map{|package| package.weight.amount}).to eq([61.0, 60.0, 60.0, 40.0, 29.0].map{|x| x * Spree::ActiveShipping::Config[:unit_multiplier]})
           expect(packages.map{|package| package.weight.unit}.uniq).to eq([:ounces])
         end
